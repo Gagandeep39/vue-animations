@@ -109,6 +109,15 @@ dialog {
 - Vue adds/removes these classes itself, it uses `v-*-*` in class names
 - Anything enclosed in `<transition> </transition>` will ndergo these animation
 
+```html
+<div class="container">
+  <transition>
+    <p v-if="paragraphIsVisible">Sometie Visible...</p>
+  </transition>
+  <button @click="toggleParagraph">Toggle Paragraph</button>
+</div>
+```
+
 ```css
 /* Entering */
 .v-enter-from {
@@ -136,5 +145,27 @@ dialog {
 .v-leave-to {
   opacity: 0;
   transform: translateY(-30px);
+}
+```
+
+- `.v-leave-active`, `.v-enter-active` are important
+- We can specifify keyframes instead of using comibination of all three classes
+
+```css
+@keyframes custom-fade {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  70% {
+    transform: translateX(-120px) scale(1.2);
+  }
+  100% {
+    transform: translateX(-150px) scale(1);
+  }
+}
+.v-enter-active {
+  /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
+  /* transition: all 0.3s ease-out; */
+  animation: custom-fade 0.3s ease-out forwards;
 }
 ```
