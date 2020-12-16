@@ -112,18 +112,13 @@ button:active {
   }
 }
 /* Enter */
-.v-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
-}
+
 .v-enter-active {
   /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
-  transition: all 0.3s ease-out;
+  /* transition: all 0.3s ease-out; */
+  animation: custom-fade 0.3s ease-out forwards
 }
-.v-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
+
 /* Leave */
 .v-leave-from {
   opacity: 1;
