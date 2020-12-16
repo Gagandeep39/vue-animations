@@ -177,3 +177,5 @@ dialog {
 - If there are multiple elemnt, all will have same animation
   1. To avoid this we have to replace `v-enter-from` with `para-enter-from`
   2. Add name="para" attribute in transition elemnt
+- For more flexibility, we can use spcific class names such as
+  - `enter-to-class`, `enter-active-class` etc.
