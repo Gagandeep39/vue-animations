@@ -11,6 +11,7 @@
   - [Built in transition events](#built-in-transition-events)
   - [Jacascript transition](#jacascript-transition)
   - [List animations using Transition Group](#list-animations-using-transition-group)
+  - [Router animation](#router-animation)
 
 ## Deployment
 
@@ -367,3 +368,41 @@ export default {
   transition: transform 0.8s ease;
 }
 ```
+
+## Router animation
+
+- Animation while switching routes
+- Page entry and exit animation
+
+```html
+<router-view v-slot="slotProps">
+  <transition name="fade-button" mode="out-in">
+    <component :is="slotProps.Component"></component></transition
+></router-view>
+```
+
+```css
+.fade-button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
+}
+```
+
+- `slotProps` are props provided by router
+- `slotProps.Component` refers to the component to be loaded
+- Is is the new router animation syntax in Vue 3
+- Till vue2, normal steps were followed
+  1. Enclose router-view inide transition
+  2. Add `*-leave-active`, `*-enter-active` CSS class based animation
+- `mode="out-in"` ensures Removing current page animation occurs followed by new page entering (Prevents both from running together)
