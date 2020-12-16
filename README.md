@@ -6,6 +6,7 @@
   - [Keyframe animation](#keyframe-animation)
   - [Dialog animation](#dialog-animation)
   - [Transition](#transition)
+  - [Scope](#scope)
 
 ## Deployment
 
@@ -169,3 +170,10 @@ dialog {
   animation: custom-fade 0.3s ease-out forwards;
 }
 ```
+
+## Scope
+
+- By defaut, one page can have single transition elemnt
+- If there are multiple elemnt, all will have same animation
+  1. To avoid this we have to replace `v-enter-from` with `para-enter-from`
+  2. Add name="para" attribute in transition elemnt
