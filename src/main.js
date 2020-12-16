@@ -15,7 +15,12 @@ const router = createRouter({
   ],
 });
 
-createApp(App)
+const app = createApp(App)
   .component('base-modal', BaseModal)
-  .use(router)
-  .mount('#app');
+  .use(router);
+
+// Prevents router animatin first time (When page start)
+// Default behaviour is because vue switches from / to specified route causing animation to iccur
+router.isReady().then(() => {
+  app.mount('#app');
+});
