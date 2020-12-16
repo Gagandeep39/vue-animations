@@ -66,7 +66,7 @@ button:active {
   background-color: #290033;
   margin-bottom: 2rem;
   /* transition: CSS-property-name duration function name; */
-  transition: transform 0.3s ease-out;
+  /* transition: transform 0.3s ease-out; */
 }
 .container {
   max-width: 40rem;
@@ -81,6 +81,24 @@ button:active {
 }
 .animate {
   /* Moves object by 50px to left */
-  transform: translateX(-150px);
+  /* transform: translateX(-150px); */
+  /* custom-fade - Name of keyframe 
+    0.3s duration
+    ease-out - animation
+    forwards - Keep final keey frame
+  */
+
+  animation: custom-fade 0.3s ease-out forwards;
+}
+@keyframes custom-fade {
+  0% {
+    transform: translateX(0) scale(1);
+  }
+  70% {
+    transform: translateX(-120px) scale(1.2);
+  }
+  100% {
+    transform: translateX(-150px) scale(1);
+  }
 }
 </style>
