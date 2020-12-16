@@ -9,6 +9,7 @@
   - [Scope](#scope)
   - [Transitioning between multiple elemens](#transitioning-between-multiple-elemens)
   - [Built in transition events](#built-in-transition-events)
+  - [Jacascript transition](#jacascript-transition)
 
 ## Deployment
 
@@ -231,4 +232,85 @@ dialog {
 >
   <p v-if="paragraphIsVisible">Sometie Visible...</p>
 </transition>
+```
+
+## Jacascript transition
+
+- Useful if we are using javascript library
+  - [GreenSock](https://greensock.com/) popular javscript animation library
+- Different transition hooks are available that can be used to execute code
+- Using those hooks, JS based CSS animation can be created
+
+```html
+<transition
+  name="para"
+  @before-enter="beforeEnterTransition"
+  @before-leave="beforeLeaveTransition"
+  @enter="enter"
+  @leave="leave"
+  @enter-cancelled="enterCancelled"
+  @leave-cancelled="leaveCancelled"
+>
+  <p v-if="paragraphIsVisible">Sometie Visible...</p>
+</transition>
+```
+
+```js
+export default {
+  data() {
+    return {
+      enterInterval: null,
+      leaveInterval: null,
+    };
+  },
+  methods: {
+    // ############## Javascript based animation ##############
+    beforeEnterTransition(element) {
+      // Executed on enter transtion
+      // We also get the element as param on which transition is performed
+      console.log('beforeEnterTransition');
+      element.style.opacity = 0;
+    },
+    beforeLeaveTransition(element) {
+      // Executed on leave transtion
+      // We also get the element as param on which transition is performed
+      console.log('beforeLeaveTransition');
+      element.style.opacity = 1;
+    },
+    enter(element, done) {
+      // When enter animation starts
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        element.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          // Usd to tell that this event is complete
+          done();
+        }
+      }, 20);
+    },
+    leave(element, done) {
+      // When leave animation starts
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        element.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          // Usd to tell that this event is complete
+          done();
+        }
+      }, 20);
+    },
+    enterCancelled() {
+      // Called when another transition event is called while enter event is getting executed
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled() {
+      // Called when another transition event is called while leave event is getting executed
+      clearInterval(this.leaveInterval);
+    },
+  },
+};
 ```
