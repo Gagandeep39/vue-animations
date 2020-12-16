@@ -223,6 +223,8 @@ dialog {
 
 - Events called whe a transition takes place
 - Allows us to execute javascript code when certain trnsition occurs
+- Can be used with CSS based animation
+- Doesnt override CSS animation
 
 ```htm
 <transition
