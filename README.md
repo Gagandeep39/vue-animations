@@ -7,6 +7,7 @@
   - [Dialog animation](#dialog-animation)
   - [Transition](#transition)
   - [Scope](#scope)
+  - [Transitioning between multiple elemens](#transitioning-between-multiple-elemens)
 
 ## Deployment
 
@@ -179,3 +180,39 @@ dialog {
   2. Add name="para" attribute in transition elemnt
 - For more flexibility, we can use spcific class names such as
   - `enter-to-class`, `enter-active-class` etc.
+
+## Transitioning between multiple elemens
+
+- Transition block can have multiple element to transition between those 2
+- Basically, its possible when its guaranteed that **only one** is visible in the DOM
+  - Possible using `v-if` and `v-else`
+- `mode="out-in"` Ensures only one elment and its animation is visible
+
+```html
+<!-- Transition with multiple elemnts -->
+<div class="container">
+  <transition name="fade-button" mode="out-in">
+    <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
+    <button @click="hideUsers" v-else>Hide Users</button>
+  </transition>
+</div>
+```
+
+```css
+/* Button animation */
+.fade-button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
+}
+```
