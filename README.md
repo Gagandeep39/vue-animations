@@ -10,6 +10,7 @@
   - [Transitioning between multiple elemens](#transitioning-between-multiple-elemens)
   - [Built in transition events](#built-in-transition-events)
   - [Jacascript transition](#jacascript-transition)
+  - [List animations using Transition Group](#list-animations-using-transition-group)
 
 ## Deployment
 
@@ -318,3 +319,5 @@ export default {
   },
 };
 ```
+
+## List animations using Transition Group
