@@ -141,27 +141,6 @@ button:active {
     transform: translateX(-150px) scale(1);
   }
 }
-/* Enter */
-
-.para-enter-active {
-  /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
-  /* transition: all 0.3s ease-out; */
-  animation: custom-fade 0.3s ease-out forwards;
-}
-
-/* Leave */
-.para-leave-from {
-  opacity: 1;
-  transform: translateY(0);
-}
-.para-leave-active {
-  /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
-  transition: all 0.3s ease-in;
-}
-.para-leave-to {
-  opacity: 0;
-  transform: translateY(-30px);
-}
 
 /* Button animation */
 .fade-button-enter-active {
