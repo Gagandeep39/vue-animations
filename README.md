@@ -321,3 +321,41 @@ export default {
 ```
 
 ## List animations using Transition Group
+
+- Transition group can animate multile elements at the same time
+- Allows animating single list item or multiple list item
+- transition doesnt render any element in HTML
+- transition group requires a placeholder such as `div` or `ul` any other valid tml component (Custom components are also supported) else eg. `tag="ul"`
+
+```html
+<template>
+  <transition-group tag="ul" name="user-list">
+    <li v-for="user in users" :key="user" @click="removeUser(user)">
+      {{ user }}
+    </li>
+  </transition-group>
+</template>
+```
+
+```css
+.user-list-enter-from {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.user-list-enter-to,
+.user-list-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+.user-list-enter-active {
+  transition: all 1s ease-out;
+}
+
+.user-list-leave-active {
+  transition: all 1s ease-in;
+}
+.user-list-leave-to {
+  opacity: 1;
+  transform: translateX(30px);
+}
+```
