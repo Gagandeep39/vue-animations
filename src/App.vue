@@ -131,7 +131,7 @@ button:active {
 }
 .v-leave-active {
   /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
-  transition: all 0.3s ease-out;
+  transition: all 0.3s ease-in;
 }
 .v-leave-to {
   opacity: 0;
