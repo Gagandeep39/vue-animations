@@ -110,6 +110,7 @@ dialog {
 - Anything enclosed in `<transition> </transition>` will ndergo these animation
 
 ```css
+/* Entering */
 .v-enter-from {
   opacity: 0;
   transform: translateY(-30px);
@@ -121,5 +122,19 @@ dialog {
 .v-enter-to {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Leaving */
+.v-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+.v-leave-active {
+  /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
+  transition: all 0.3s ease-out;
+}
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
 }
 ```
