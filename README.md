@@ -4,6 +4,8 @@
   - [Deployment](#deployment)
   - [Basic Animation](#basic-animation)
   - [Keyframe animation](#keyframe-animation)
+  - [Dialog animation](#dialog-animation)
+  - [Transition](#transition)
 
 ## Deployment
 
@@ -71,3 +73,36 @@
   }
 }
 ```
+
+## Dialog animation
+
+- Simple scaling animation
+- Executed when dialog is opened
+
+```css
+dialog {
+  animation: dialog-model 0.3s ease-out forwards;
+}
+
+@keyframes dialog-model {
+  /* Replacement to 0 and 100% */
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+```
+
+## Transition
+
+- Used to animate DOM elemnt
+- Can have only 1 child elemnt
+- Used to animate enter/leave state
+- Adds few utility classes in specified order
+  - To mount elemnt `*-enter-from`, `*-enter-active`, `*-enter-to`,
+  - To remove element `*-leave-from`, `*-leave-active`, `*-leave-to`,
+- Custom duration and css can be specified, `<transition>` will use those CSS property and accordingly manipulate dom
