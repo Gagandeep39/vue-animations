@@ -106,3 +106,20 @@ dialog {
   - To mount elemnt `*-enter-from`, `*-enter-active`, `*-enter-to`,
   - To remove element `*-leave-from`, `*-leave-active`, `*-leave-to`,
 - Custom duration and css can be specified, `<transition>` will use those CSS property and accordingly manipulate dom
+- Vue adds/removes these classes itself, it uses `v-*-*` in class names
+- Anything enclosed in `<transition> </transition>` will ndergo these animation
+
+```css
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.v-enter-active {
+  /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
+  transition: all 0.3s ease-out;
+}
+.v-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+```

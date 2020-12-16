@@ -111,4 +111,16 @@ button:active {
     transform: translateX(-150px) scale(1);
   }
 }
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+.v-enter-active {
+  /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
+  transition: all 0.3s ease-out;
+}
+.v-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
