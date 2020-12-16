@@ -11,6 +11,15 @@
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
+
+  <!-- Transition with multiple elemnts -->
+  <div class="container">
+    <transition name="fade-button">
+      <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
+      <button @click="hideUsers" v-else>Hide Users</button>
+    </transition>
+  </div>
+
   <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -27,6 +36,7 @@ export default {
       dialogIsVisible: false,
       animatedBlock: false,
       paragraphIsVisible: false,
+      usersAreVisible: false,
     };
   },
   methods: {
@@ -41,6 +51,12 @@ export default {
     },
     hideDialog() {
       this.dialogIsVisible = false;
+    },
+    showUsers() {
+      this.usersAreVisible = true;
+    },
+    hideUsers() {
+      this.usersAreVisible = false;
     },
   },
 };
@@ -131,5 +147,22 @@ button:active {
 .para-leave-to {
   opacity: 0;
   transform: translateY(-30px);
+}
+
+/* Button animation */
+.fade-button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
 }
 </style>
