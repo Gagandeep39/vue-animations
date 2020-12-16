@@ -11,7 +11,7 @@
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
   </base-modal>
@@ -116,7 +116,7 @@ button:active {
 .para-enter-active {
   /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
   /* transition: all 0.3s ease-out; */
-  animation: custom-fade 0.3s ease-out forwards
+  animation: custom-fade 0.3s ease-out forwards;
 }
 
 /* Leave */

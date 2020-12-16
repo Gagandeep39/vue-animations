@@ -1,12 +1,17 @@
 <template>
-  <div class="backdrop" @click="$emit('close')"></div>
-  <dialog open>
-    <slot></slot>
-  </dialog>
+  <div class="backdrop" @click="$emit('close')" v-if="open"></div>
+  <!-- Added inside because it has transition can have nly one child elemnt -->
+  <!-- Initially parent <base-model> had 2 elements -->
+  <transition name="modal">
+    <dialog open v-if="open">
+      <slot></slot>
+    </dialog>
+  </transition>
 </template>
 
 <script>
 export default {
+  props: ['open'],
   emits: ['close'],
 };
 </script>
@@ -34,7 +39,15 @@ dialog {
   background-color: white;
   z-index: 100;
   border: none;
-  animation: dialog-model 0.3s ease-out forwards;
+  /* animation: dialog-model 0.3s ease-out forwards; */
+}
+
+/*************** Enter/leave Dialog animation ******************/
+.modal-enter-active {
+  animation: dialog-model 0.3s ease-out;
+}
+.modal-leave-active {
+  animation: dialog-model 0.3s ease-in reverse;
 }
 
 @keyframes dialog-model {
