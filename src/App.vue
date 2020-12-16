@@ -6,7 +6,7 @@
     </button>
   </div>
   <div class="container">
-    <transition>
+    <transition name="para">
       <p v-if="paragraphIsVisible">Sometie Visible...</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -113,22 +113,22 @@ button:active {
 }
 /* Enter */
 
-.v-enter-active {
+.para-enter-active {
   /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
   /* transition: all 0.3s ease-out; */
   animation: custom-fade 0.3s ease-out forwards
 }
 
 /* Leave */
-.v-leave-from {
+.para-leave-from {
   opacity: 1;
   transform: translateY(0);
 }
-.v-leave-active {
+.para-leave-active {
   /* All changes occuring wil be in duration of 0.3s with eas-out animation  */
   transition: all 0.3s ease-in;
 }
-.v-leave-to {
+.para-leave-to {
   opacity: 0;
   transform: translateY(-30px);
 }
