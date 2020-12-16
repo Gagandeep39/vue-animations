@@ -8,6 +8,7 @@
   - [Transition](#transition)
   - [Scope](#scope)
   - [Transitioning between multiple elemens](#transitioning-between-multiple-elemens)
+  - [Built in transition events](#built-in-transition-events)
 
 ## Deployment
 
@@ -215,4 +216,19 @@ dialog {
 .fade-button-leave-from {
   opacity: 1;
 }
+```
+
+## Built in transition events
+
+- Events called whe a transition takes place
+- Allows us to execute javascript code when certain trnsition occurs
+
+```htm
+<transition
+  name="para"
+  @before-enter="beforeEnterTransition"
+  @before-leave="beforeLeaveTransition"
+>
+  <p v-if="paragraphIsVisible">Sometie Visible...</p>
+</transition>
 ```

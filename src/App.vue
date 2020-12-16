@@ -6,7 +6,11 @@
     </button>
   </div>
   <div class="container">
-    <transition name="para">
+    <transition
+      name="para"
+      @before-enter="beforeEnterTransition"
+      @before-leave="beforeLeaveTransition"
+    >
       <p v-if="paragraphIsVisible">Sometie Visible...</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
@@ -57,6 +61,16 @@ export default {
     },
     hideUsers() {
       this.usersAreVisible = false;
+    },
+    beforeEnterTransition() {
+      // Executed on enter transtion
+      // We also get the element as param on which transition is performed
+      console.log('beforeEnterTransition');
+    },
+    beforeLeaveTransition() {
+      // Executed on leave transtion
+      // We also get the element as param on which transition is performed
+      console.log('beforeLeaveTransition');
     },
   },
 };
