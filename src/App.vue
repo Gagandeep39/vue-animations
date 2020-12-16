@@ -10,6 +10,10 @@
       name="para"
       @before-enter="beforeEnterTransition"
       @before-leave="beforeLeaveTransition"
+      @enter="enter"
+      @leave="leave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
     >
       <p v-if="paragraphIsVisible">Sometie Visible...</p>
     </transition>
@@ -41,6 +45,8 @@ export default {
       animatedBlock: false,
       paragraphIsVisible: false,
       usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null,
     };
   },
   methods: {
@@ -62,15 +68,52 @@ export default {
     hideUsers() {
       this.usersAreVisible = false;
     },
-    beforeEnterTransition() {
+    // ############## Javascript based animation ##############
+    beforeEnterTransition(element) {
       // Executed on enter transtion
       // We also get the element as param on which transition is performed
       console.log('beforeEnterTransition');
+      element.style.opacity = 0;
     },
-    beforeLeaveTransition() {
+    beforeLeaveTransition(element) {
       // Executed on leave transtion
       // We also get the element as param on which transition is performed
       console.log('beforeLeaveTransition');
+      element.style.opacity = 1;
+    },
+    enter(element, done) {
+      // When enter animation starts
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        element.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          // Usd to tell that this event is complete
+          done();
+        }
+      }, 20);
+    },
+    leave(element, done) {
+      // When leave animation starts
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        element.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          // Usd to tell that this event is complete
+          done();
+        }
+      }, 20);
+    },
+    enterCancelled() {
+      // Called when another transition event is called while enter event is getting executed
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled() {
+      // Called when another transition event is called while leave event is getting executed
+      clearInterval(this.leaveInterval);
     },
   },
 };
