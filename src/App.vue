@@ -5,7 +5,7 @@
   </div>
   <!-- Router aimation -->
   <router-view v-slot="slotProps">
-    <transition name="router">
+    <transition name="fade-button" mode="out-in">
       <component :is="slotProps.Component"></component
     ></transition>
   </router-view>
