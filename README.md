@@ -223,8 +223,6 @@ dialog {
 
 - Events called whe a transition takes place
 - Allows us to execute javascript code when certain trnsition occurs
-- Can be used with CSS based animation
-- Doesnt override CSS animation
 
 ```htm
 <transition
@@ -242,9 +240,13 @@ dialog {
   - [GreenSock](https://greensock.com/) popular javscript animation library
 - Different transition hooks are available that can be used to execute code
 - Using those hooks, JS based CSS animation can be created
+- Can be used with CSS based animation
+- Doesnt override CSS animation
+- To pfrevent css animation we need to add `:css="false"`
 
 ```html
 <transition
+  :css="false"
   name="para"
   @before-enter="beforeEnterTransition"
   @before-leave="beforeLeaveTransition"
