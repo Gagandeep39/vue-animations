@@ -1,13 +1,22 @@
 <template>
+  <!-- Transition group animation -->
   <div class="container">
     <user-list></user-list>
   </div>
+  <!-- Router aimation -->
+  <router-view v-slot="slotProps">
+    <transition name="router">
+      <component :is="slotProps.Component"></component
+    ></transition>
+  </router-view>
+  <!-- Simple css aniation -->
   <div class="container">
     <div class="block" :class="{ animate: animatedBlock }"></div>
     <button @click="animateBlock">
       Animate
     </button>
   </div>
+  <!-- Single transition animation -->
   <div class="container">
     <transition
       :css="false"
@@ -31,7 +40,7 @@
       <button @click="hideUsers" v-else>Hide Users</button>
     </transition>
   </div>
-
+  <!-- Dialog animation -->
   <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -209,5 +218,17 @@ button:active {
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
+}
+
+/* ############### Router animation ############### */
+.router-enter-from {
+}
+.router-enter-to {
+}
+.router-enter-active {
+  animation: custom-fade 0.4s ease-out;
+}
+.router-leave-active {
+  animation: custom-fade 0.4s ease-in;
 }
 </style>
