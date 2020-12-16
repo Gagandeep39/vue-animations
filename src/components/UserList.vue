@@ -54,9 +54,14 @@ li {
 
 .user-list-leave-active {
   transition: all 1s ease-in;
+  position: absolute;
 }
 .user-list-leave-to {
   opacity: 1;
   transform: translateX(30px);
+}
+/* Ensures animation is complete before modifying dom */
+.user-list-move {
+  transition: transform 0.8s ease;
 }
 </style>

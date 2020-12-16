@@ -326,6 +326,8 @@ export default {
 - Allows animating single list item or multiple list item
 - transition doesnt render any element in HTML
 - transition group requires a placeholder such as `div` or `ul` any other valid tml component (Custom components are also supported) else eg. `tag="ul"`
+- `*-move` Another css class provided to transition group elements which are not moving
+- Helps keeping them inpace or providing a diferent animation
 
 ```html
 <template>
@@ -357,5 +359,11 @@ export default {
 .user-list-leave-to {
   opacity: 1;
   transform: translateX(30px);
+}
+
+/* Ensures animation is complete before modifying dom */
+/* Additional class *-move provided by Vue */
+.user-list-move {
+  transition: transform 0.8s ease;
 }
 ```
